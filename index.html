@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alex Nawal Sarwar × VM Groupe</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&family=Archivo:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0a0a0a;
+    --paper: #f5f2ec;
+    --warm-white: #faf9f6;
+    --gold: #b8962e;
+    --gold-light: #d4af5a;
+    --gold-pale: #f0e6c8;
+    --muted: #7a7570;
+    --rule: #d8d2c6;
+  }
+ 
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+ 
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Archivo', sans-serif;
+    font-weight: 300;
+  }
+ 
+  /* ── COVER ── */
+  .cover {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr auto;
+    position: relative;
+    overflow: hidden;
+  }
+ 
+  .cover-left {
+    background: var(--ink);
+    padding: 80px 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+  }
+ 
+  .cover-left::after {
+    content: '';
+    position: absolute;
+    top: 0; right: 0; bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom, transparent, var(--gold), transparent);
+  }
+ 
+  .cover-right {
+    background: var(--warm-white);
+    padding: 80px 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+ 
+  .eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+ 
+  .cover-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(52px, 7vw, 88px);
+    font-weight: 300;
+    line-height: 0.95;
+    color: var(--warm-white);
+    letter-spacing: -0.02em;
+  }
+ 
+  .cover-name em {
+    font-style: italic;
+    color: var(--gold-light);
+  }
+ 
+  .cover-tagline {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    color: var(--muted);
+    color: #6a6560;
+    border-top: 1px solid #2a2a2a;
+    padding-top: 20px;
+    margin-top: 20px;
+  }
+ 
+  .cover-title-block {
+    margin-bottom: auto;
+  }
+ 
+  .cover-vm-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 100px;
+    font-weight: 300;
+    color: var(--ink);
+    line-height: 1;
+    letter-spacing: -0.04em;
+    margin-bottom: 4px;
+  }
+ 
+  .cover-vm-sub {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+ 
+  .cover-equation {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin: 40px 0;
+  }
+ 
+  .eq-pill {
+    padding: 8px 18px;
+    border: 1px solid var(--rule);
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+ 
+  .eq-pill.active {
+    background: var(--ink);
+    color: var(--gold-light);
+    border-color: var(--ink);
+  }
+ 
+  .eq-op {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    color: var(--gold);
+  }
+ 
+  .cover-date {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+ 
+  /* ── SECTION HEADERS ── */
+  .section {
+    padding: 80px 80px;
+    position: relative;
+  }
+ 
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 40px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+ 
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--rule);
+  }
+ 
+  /* ── MOOD BOARD ── */
+  .moodboard {
+    background: var(--warm-white);
+  }
+ 
+  .mood-headline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 5vw, 64px);
+    font-weight: 300;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 60px;
+    max-width: 800px;
+  }
+ 
+  .mood-headline em {
+    font-style: italic;
+    color: var(--gold);
+  }
+ 
+  /* BRAND PILLARS GRID */
+  .pillars-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--rule);
+    margin-bottom: 60px;
+  }
+ 
+  .pillar {
+    background: var(--warm-white);
+    padding: 40px 32px;
+    position: relative;
+    overflow: hidden;
+  }
+ 
+  .pillar::before {
+    content: attr(data-num);
+    position: absolute;
+    top: -10px;
+    right: 16px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 100px;
+    font-weight: 300;
+    color: var(--gold-pale);
+    line-height: 1;
+    z-index: 0;
+  }
+ 
+  .pillar-icon {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    position: relative;
+    z-index: 1;
+  }
+ 
+  .pillar-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-weight: 300;
+    margin-bottom: 12px;
+    line-height: 1.1;
+    position: relative;
+    z-index: 1;
+  }
+ 
+  .pillar-desc {
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--muted);
+    position: relative;
+    z-index: 1;
+  }
+ 
+  /* PALETTE STRIP */
+  .palette-section {
+    background: var(--ink);
+    padding: 60px 80px;
+  }
+ 
+  .palette-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 32px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+ 
+  .palette-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: #2a2a2a;
+  }
+ 
+  .palette-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 12px;
+  }
+ 
+  .swatch {
+    aspect-ratio: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 12px;
+  }
+ 
+  .swatch-name {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    line-height: 1.4;
+  }
+ 
+  .swatch-hex {
+    font-family: 'DM Mono', monospace;
+    font-size: 8px;
+    opacity: 0.6;
+  }
+ 
+  /* CLIENT MOSAIC */
+  .clients-mosaic {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 1px;
+    background: var(--rule);
+    margin-bottom: 60px;
+  }
+ 
+  .client-cell {
+    background: var(--warm-white);
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 140px;
+  }
+ 
+  .client-cell.featured {
+    grid-row: 1 / 3;
+    background: var(--ink);
+    padding: 48px;
+    min-height: 280px;
+  }
+ 
+  .client-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 300;
+    letter-spacing: -0.01em;
+  }
+ 
+  .client-cell.featured .client-name {
+    font-size: 38px;
+    color: var(--warm-white);
+    line-height: 1;
+  }
+ 
+  .client-category {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+ 
+  .client-cell.featured .client-category {
+    color: var(--gold);
+  }
+ 
+  /* KEYWORD WALL */
+  .keyword-wall {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 40px 0;
+  }
+ 
+  .kw {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    font-style: italic;
+    padding: 6px 16px;
+    border: 1px solid var(--rule);
+    color: var(--muted);
+    letter-spacing: 0.02em;
+    transition: all 0.2s;
+  }
+ 
+  .kw.bold {
+    border-color: var(--ink);
+    color: var(--ink);
+    font-style: normal;
+    font-weight: 600;
+    font-family: 'Archivo', sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+ 
+  .kw.gold {
+    background: var(--gold);
+    color: var(--warm-white);
+    border-color: var(--gold);
+    font-style: normal;
+    font-weight: 400;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+ 
+  /* ── COVER LETTER ── */
+  .letter-section {
+    background: var(--paper);
+    padding: 100px 80px;
+  }
+ 
+  .letter-grid {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    gap: 80px;
+  }
+ 
+  .letter-sidebar {
+    border-right: 1px solid var(--rule);
+    padding-right: 40px;
+  }
+ 
+  .sidebar-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+ 
+  .sidebar-value {
+    font-size: 14px;
+    color: var(--ink);
+    margin-bottom: 28px;
+    line-height: 1.5;
+  }
+ 
+  .sidebar-value a {
+    color: var(--gold);
+    text-decoration: none;
+  }
+ 
+  .letter-body h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 48px;
+    font-weight: 300;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-bottom: 40px;
+  }
+ 
+  .letter-body h2 em {
+    font-style: italic;
+    color: var(--gold);
+  }
+ 
+  .letter-p {
+    font-size: 15px;
+    line-height: 1.85;
+    color: #2a2a2a;
+    margin-bottom: 24px;
+    max-width: 640px;
+  }
+ 
+  .letter-p strong {
+    font-weight: 700;
+    color: var(--ink);
+  }
+ 
+  .letter-p .highlight {
+    background: var(--gold-pale);
+    padding: 0 4px;
+    font-weight: 500;
+  }
+ 
+  .sign-off {
+    margin-top: 48px;
+    padding-top: 32px;
+    border-top: 1px solid var(--rule);
+    display: flex;
+    align-items: flex-start;
+    gap: 40px;
+  }
+ 
+  .sign-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px;
+    font-weight: 300;
+    letter-spacing: -0.01em;
+    font-style: italic;
+  }
+ 
+  .sign-title {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-top: 4px;
+  }
+ 
+  /* ── STATS BAR ── */
+  .stats-bar {
+    background: var(--ink);
+    padding: 48px 80px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+    border-top: 1px solid #1a1a1a;
+  }
+ 
+  .stat-item {
+    border-left: 1px solid #2a2a2a;
+    padding-left: 24px;
+  }
+ 
+  .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 48px;
+    font-weight: 300;
+    color: var(--gold-light);
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+ 
+  .stat-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    color: #4a4a48;
+    text-transform: uppercase;
+    margin-top: 6px;
+  }
+ 
+  /* ── GRID LAYOUT SHOWCASE ── */
+  .grid-showcase {
+    background: var(--warm-white);
+    padding: 80px;
+  }
+ 
+  .showcase-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: 200px 200px 120px;
+    gap: 8px;
+    margin-top: 40px;
+  }
+ 
+  .sg-cell {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+  }
+ 
+  .sg-1 { grid-column: 1/5; grid-row: 1/3; background: var(--ink); }
+  .sg-2 { grid-column: 5/9; grid-row: 1/2; background: var(--gold); }
+  .sg-3 { grid-column: 9/13; grid-row: 1/2; background: #e8e3d8; }
+  .sg-4 { grid-column: 5/9; grid-row: 2/3; background: #e8e3d8; }
+  .sg-5 { grid-column: 9/13; grid-row: 2/3; background: var(--ink); }
+  .sg-6 { grid-column: 1/7; grid-row: 3/4; background: var(--gold-pale); border: 1px solid var(--rule); }
+  .sg-7 { grid-column: 7/13; grid-row: 3/4; background: var(--paper); border: 1px solid var(--rule); }
+ 
+  .sg-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+ 
+  .sg-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 300;
+    line-height: 1.1;
+  }
+ 
+  .light-text { color: var(--warm-white); }
+  .light-label { color: rgba(255,255,255,0.4); }
+  .dark-text { color: var(--ink); }
+  .dark-label { color: var(--muted); }
+  .gold-text { color: var(--ink); }
+  .gold-label { color: rgba(0,0,0,0.4); }
+ 
+  /* ── FOOTER ── */
+  .footer {
+    background: var(--ink);
+    padding: 40px 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid var(--gold);
+  }
+ 
+  .footer-left {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    color: #3a3a38;
+    text-transform: uppercase;
+  }
+ 
+  .footer-center {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13px;
+    font-style: italic;
+    color: var(--gold);
+  }
+ 
+  .footer-right {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    color: #3a3a38;
+    text-transform: uppercase;
+  }
+ 
+  /* ── PRINT RULES ── */
+  @media print {
+    body { background: white; }
+    .section, .letter-section, .palette-section, .grid-showcase { padding: 50px; }
+    .cover { min-height: auto; page-break-after: always; }
+  }
+</style>
+</head>
+<body>
+ 
+<!-- ═══════════════ COVER ═══════════════ -->
+<div class="cover">
+  <div class="cover-left">
+    <div>
+      <div class="eyebrow" style="margin-bottom: 48px;">Application · 2026</div>
+      <div class="cover-name">
+        <em>Alex</em><br>Nawal<br>Sarwar
+      </div>
+      <div class="cover-tagline" style="margin-top: 32px;">
+        Data analyst · Visual Arts · Fashion Tech
+      </div>
+    </div>
+    <div>
+      <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.2em;color:#2a2a28;text-transform:uppercase;margin-bottom:8px;">Portfolio</div>
+      <div style="font-family:'Cormorant Garamond',serif;font-size:14px;color:var(--gold-light);">ns5504.github.io/NS_Portfolio</div>
+    </div>
+  </div>
+ 
+  <div class="cover-right">
+    <div>
+      <div class="eyebrow" style="margin-bottom: 20px;">Presented to</div>
+      <div class="cover-vm-logo">VM</div>
+      <div class="cover-vm-sub">Groupe · New York City</div>
+    </div>
+ 
+    <div>
+      <div class="cover-equation">
+        <div class="eq-pill active">50% Analytical</div>
+        <div class="eq-op">+</div>
+        <div class="eq-pill active">50% Creative</div>
+        <div class="eq-op">=</div>
+        <div class="eq-pill active" style="background:var(--gold);color:var(--warm-white);border-color:var(--gold);">Me</div>
+      </div>
+      <div style="font-size:13px;line-height:1.7;color:var(--muted);max-width:360px;font-family:'Cormorant Garamond',serif;font-style:italic;">
+        "If your work is so good you make yourself say WOW I'm good - you belong here."
+      </div>
+    </div>
+ 
+    <div class="cover-date">April 2026 · New York, NY</div>
+  </div>
+</div>
+ 
+<!-- ═══════════════ MOOD BOARD ═══════════════ -->
+<div class="section moodboard">
+  <div class="section-label">01 · Mood Board - VM Groupe</div>
+ 
+  <div class="mood-headline">
+    Data-driven creatives.<br>
+    <em>Desire by design.</em>
+  </div>
+ 
+  <!-- BRAND PILLARS -->
+  <div class="pillars-grid">
+    <div class="pillar" data-num="1">
+      <div class="pillar-icon">Strategy</div>
+      <div class="pillar-title">We mastered<br>the art<br>of desire.</div>
+      <div class="pillar-desc">Informed by industry research, consumer insights, and current cultural codes.</div>
+    </div>
+    <div class="pillar" data-num="2">
+      <div class="pillar-icon">Branding</div>
+      <div class="pillar-title">Distinctive.<br>Beautiful.<br>Meaningful.</div>
+      <div class="pillar-desc">Brands that create desire and shift perception - across LVMH, Tom Ford, L'Oréal.</div>
+    </div>
+    <div class="pillar" data-num="3">
+      <div class="pillar-icon">Analytics</div>
+      <div class="pillar-title">We love<br>data.<br>It rules.</div>
+      <div class="pillar-desc">SEO, SEM, performance marketing, and customer acquisition - all with great taste.</div>
+    </div>
+    <div class="pillar" data-num="4">
+      <div class="pillar-icon">Content</div>
+      <div class="pillar-title">Simplicity<br>is complexity<br>resolved.</div>
+      <div class="pillar-desc">CGI, 3D motion, digital storytelling - where luxury meets conversion.</div>
+    </div>
+  </div>
+ 
+  <!-- CLIENT MOSAIC -->
+  <div class="section-label">Client Roster</div>
+  <div class="clients-mosaic">
+    <div class="client-cell featured">
+      <div>
+        <div class="client-category" style="margin-bottom: 12px;">Anchor Client</div>
+        <div class="client-name">LVMH</div>
+      </div>
+      <div style="font-family:'Cormorant Garamond',serif;font-size:15px;font-style:italic;color:#6a6560;line-height:1.6;margin-top:20px;">
+        Louis Vuitton · Dior · Givenchy · Fendi · Tiffany & Co. · Bulgari · Sephora
+      </div>
+      <div class="client-category">Beauty · Fashion · Jewelry · Spirits</div>
+    </div>
+    <div class="client-cell">
+      <div class="client-category">Beauty</div>
+      <div class="client-name">Estée Lauder</div>
+    </div>
+    <div class="client-cell">
+      <div class="client-category">Fashion</div>
+      <div class="client-name">Alexander McQueen</div>
+    </div>
+    <div class="client-cell">
+      <div class="client-category">Beauty</div>
+      <div class="client-name">Tom Ford Beauty</div>
+    </div>
+    <div class="client-cell">
+      <div class="client-category">Beauty</div>
+      <div class="client-name">L'Oréal Paris</div>
+    </div>
+    <div class="client-cell">
+      <div class="client-category">Champagne</div>
+      <div class="client-name">Perrier-Jouët</div>
+    </div>
+    <div class="client-cell">
+      <div class="client-category">Footwear</div>
+      <div class="client-name">Converse</div>
+    </div>
+  </div>
+ 
+  <!-- KEYWORD WALL -->
+  <div class="section-label">Language They Use · Words They Mean</div>
+  <div class="keyword-wall">
+    <span class="kw bold">Elevate</span>
+    <span class="kw">desire</span>
+    <span class="kw gold">Data-driven</span>
+    <span class="kw">transformative growth</span>
+    <span class="kw bold">Exceptional</span>
+    <span class="kw">storytelling</span>
+    <span class="kw gold">50% Analytical</span>
+    <span class="kw">reframe codes of luxury</span>
+    <span class="kw bold">WOW</span>
+    <span class="kw">profound meaning</span>
+    <span class="kw gold">50% Creative</span>
+    <span class="kw">great taste</span>
+    <span class="kw">high-conversion</span>
+    <span class="kw bold">Unlike any other</span>
+    <span class="kw">simplicity is complexity resolved</span>
+    <span class="kw gold">CGI</span>
+    <span class="kw">immersive</span>
+    <span class="kw">high-standards</span>
+  </div>
+</div>
+ 
+<!-- PALETTE -->
+<div class="palette-section">
+  <div class="palette-label">02 · Visual Palette — Luxury Editorial</div>
+  <div class="palette-grid">
+    <div class="swatch" style="background:#0a0a0a;">
+      <div class="swatch-name" style="color:#d4af5a;">Ink Black</div>
+      <div class="swatch-hex" style="color:#d4af5a;">#0a0a0a</div>
+    </div>
+    <div class="swatch" style="background:#b8962e;">
+      <div class="swatch-name" style="color:#faf9f6;">Gold</div>
+      <div class="swatch-hex" style="color:#faf9f6;">#b8962e</div>
+    </div>
+    <div class="swatch" style="background:#f5f2ec;">
+      <div class="swatch-name" style="color:#0a0a0a;">Warm Paper</div>
+      <div class="swatch-hex" style="color:#0a0a0a;">#f5f2ec</div>
+    </div>
+    <div class="swatch" style="background:#d8d2c6;">
+      <div class="swatch-name" style="color:#0a0a0a;">Rule</div>
+      <div class="swatch-hex" style="color:#0a0a0a;">#d8d2c6</div>
+    </div>
+    <div class="swatch" style="background:#7a7570;">
+      <div class="swatch-name" style="color:#faf9f6;">Muted Stone</div>
+      <div class="swatch-hex" style="color:#faf9f6;">#7a7570</div>
+    </div>
+    <div class="swatch" style="background:#f0e6c8;">
+      <div class="swatch-name" style="color:#0a0a0a;">Gold Pale</div>
+      <div class="swatch-hex" style="color:#0a0a0a;">#f0e6c8</div>
+    </div>
+  </div>
+</div>
+ 
+<!-- GRID LAYOUT SHOWCASE -->
+<div class="grid-showcase">
+  <div class="section-label">03 · Grid Language — Editorial Structure</div>
+  <p style="font-size:13px;color:var(--muted);font-family:'DM Mono',monospace;letter-spacing:0.05em;max-width:500px;">12-col editorial grid · Asymmetric tension · Black anchor + gold accent · Monospace labels + serif display</p>
+  <div class="showcase-grid">
+    <div class="sg-cell sg-1">
+      <div class="sg-label light-label">Anchor</div>
+      <div class="sg-text light-text">Data meets<br>desire.</div>
+    </div>
+    <div class="sg-cell sg-2">
+      <div class="sg-label gold-label">Insight</div>
+      <div class="sg-text gold-text">50%<br>Analytical</div>
+    </div>
+    <div class="sg-cell sg-3">
+      <div class="sg-label dark-label">Visual Arts</div>
+      <div class="sg-text dark-text">Cormorant<br>Garamond</div>
+    </div>
+    <div class="sg-cell sg-4">
+      <div class="sg-label dark-label">Precision</div>
+      <div class="sg-text dark-text">DM Mono<br>300 / 400</div>
+    </div>
+    <div class="sg-cell sg-5">
+      <div class="sg-label light-label">Creative</div>
+      <div class="sg-text light-text">50%<br>Creative</div>
+    </div>
+    <div class="sg-cell sg-6">
+      <div class="sg-label" style="color:var(--muted);">Horizon Retail · Portfolio</div>
+      <div style="font-size:12px;color:var(--muted);font-family:'DM Mono',monospace;letter-spacing:0.08em;">AI-powered fashion trend intelligence · React + Grok API</div>
+    </div>
+    <div class="sg-cell sg-7">
+      <div class="sg-label" style="color:var(--muted);">Brookhaven National Lab</div>
+      <div style="font-size:12px;color:var(--muted);font-family:'DM Mono',monospace;letter-spacing:0.08em;">SQL · Python · Million-row dataset validation</div>
+    </div>
+  </div>
+</div>
+ 
+<!-- ═══════════════ COVER LETTER ═══════════════ -->
+<div class="letter-section">
+  <div class="section-label" style="margin-bottom:60px;">04 · Cover Letter - Why VM Groupe</div>
+ 
+  <div class="letter-grid">
+    <div class="letter-sidebar">
+      <div class="sidebar-label">From</div>
+      <div class="sidebar-value">Nawal Sarwar<br>New York, NY</div>
+ 
+      <div class="sidebar-label">Degree</div>
+      <div class="sidebar-value">B.S. Computer & Information Science<br>Minor: Visual Arts<br>SUNY Old Westbury - GPA 3.9</div>
+ 
+      <div class="sidebar-label">Core Stack</div>
+      <div class="sidebar-value">SQL · Python · Tableau<br>Power BI · Figma · NLP</div>
+ 
+      <div class="sidebar-label">Portfolio</div>
+      <div class="sidebar-value"><a href="https://ns5504.github.io/NS_Portfolio/">ns5504.github.io/<br>NS_Portfolio</a></div>
+ 
+      <div class="sidebar-label">Standout Work</div>
+      <div class="sidebar-value" style="font-size:12px;">Horizon Retail - AI fashion trend intelligence app (React + Grok API, live)</div>
+ 
+      <div class="sidebar-label">Contact</div>
+      <div class="sidebar-value" style="font-size:13px;">careers@vmgroupe.com</div>
+    </div>
+ 
+    <div class="letter-body">
+      <h2>WOW,<br>I'm <em>good.</em><br>I said it.</h2>
+ 
+      <p class="letter-p">
+        That's not arrogance. That's the assignment. You asked for people whose work makes them say exactly that: so consider this my audition in the font you'd choose.
+      </p>
+ 
+      <p class="letter-p">
+        I'm Nawal Sarwar, a recent Computer Science graduate (3.9 GPA) with a Visual Arts minor. My background is <strong>exactly</strong> the equation on your homepage: 50% analytical, 50% creative. I didn't pick one lane; I built both.
+      </p>
+ 
+      <p class="letter-p">
+        On the analytical side: I've validated million-row datasets at <span class="highlight">Brookhaven National Laboratory</span>, built NLP transformer models in research, and I speak SQL fluently enough to write window functions and know when <em>not</em> to. On the creative side: I've shipped a live <span class="highlight">AI-powered fashion trend intelligence app (Horizon Retail)</span> designed in Figma, built in React, powered by Anthropic. It doesn't just analyze fashion trends; it makes them feel inevitable.
+      </p>
+ 
+      <p class="letter-p">
+        Why VM Groupe specifically? Because <strong>"data-driven creatives with great taste"</strong> isn't just a tagline I read on your site; it describes how I actually think. I know what a regression model means. I also know why ivory sells better than white in February. Your clients, such as LVMH, Tom Ford, Estée Lauder, need both. They need someone who can pull insights from a performance dashboard and then ask: <em>but does it feel right?</em>
+      </p>
+ 
+      <p class="letter-p">
+        Your own words: "We push luxury forward." I'd like to be in the room where that happens: analyzing what's working, designing what's next, and being the analyst who your creatives actually want to sit next to.
+      </p>
+ 
+      <p class="letter-p">
+        I don't just want a job at an agency. I want <em>this</em> agency. The one that described itself(dead seriously) as "unlike any other." I believe you. Let me prove I belong there.
+      </p>
+ 
+      <div class="sign-off">
+        <div>
+          <div class="sign-name">Nawal Sarwar</div>
+          <div class="sign-title">Data Analyst · Fashion Tech · Visual Arts</div>
+        </div>
+        <div style="margin-left:auto;text-align:right;">
+          <div style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.15em;color:var(--muted);text-transform:uppercase;">Send to</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:16px;color:var(--gold);margin-top:4px;">careers@vmgroupe.com</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+ 
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stat-item">
+    <div class="stat-num">3.9</div>
+    <div class="stat-label">GPA · CS + Visual Arts</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">2×</div>
+    <div class="stat-label">Technical + Design Fluency</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">∞</div>
+    <div class="stat-label">Curiosity about luxury data</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">1</div>
+    <div class="stat-label">Live AI portfolio app - Horizon Retail</div>
+  </div>
+</div>
+ 
+<!-- FOOTER -->
+<div class="footer">
+  <div class="footer-left">Nawal Sarwar · 2026</div>
+  <div class="footer-center">"Simplicity is complexity resolved."</div>
+  <div class="footer-right">ns5504.github.io/NS_Portfolio</div>
+</div>
+ 
+</body>
+</html>
